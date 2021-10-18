@@ -16,8 +16,9 @@ import javax.persistence.FetchType;
 public class Topic {
 	@Id
 	@GeneratedValue
+	@Column(length = 11, nullable = false)
 	private int id;
-	@Column
+	@Column(length = 255, nullable = false)
 	private String name;
 
 	@OneToMany( mappedBy = "topic", fetch = FetchType.LAZY )

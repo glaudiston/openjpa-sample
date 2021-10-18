@@ -8,20 +8,20 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.ManyToOne;
 import javax.persistence.JoinColumn;
+import javax.persistence.FetchType;
 
 @Entity
 @Table(name = "post")
 public class Post {
 	@Id
 	@GeneratedValue
+	@Column(length = 11, nullable = false)
 	private int id;
-	@ManyToOne( optional = false )
-	@JoinColumn( name = "topic_id", nullable = false, updatable = false)
-	@Column(name = "topic_id")
+	@ManyToOne(fetch = FetchType.LAZY)
 	private Topic topic;
-	@Column
+	@Column(length = 16536, nullable = false)
 	private String title;
-	@Column
+	@Column(length = 16536, nullable = false)
 	private String text;
 
 	public int getId(){
