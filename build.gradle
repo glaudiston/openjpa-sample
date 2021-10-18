@@ -1,0 +1,47 @@
+apply plugin: 'java'
+apply plugin: 'openjpa'
+
+ext {
+	javaMainClass = "blog.main.Main"
+}
+
+buildscript {
+	repositories {
+		jcenter()
+	}
+	dependencies {
+		classpath 'com.radcortez.gradle:openjpa-gradle-plugin:3.1.0'
+	}
+}
+
+repositories {
+	mavenCentral()
+	jcenter()
+}
+
+jar {
+	manifest {
+		attributes 'Main-Class': javaMainClass
+	}
+}
+
+openjpa {
+	enhance {
+		addDefaultConstructor true
+		enforcePropertyRestrictions false
+		tmpClassLoader false
+	}
+}
+
+task runWithJavaExec(type: JavaExec) {
+	group = "Execution"
+	description = "Run the project"
+	classpath = sourceSets.main.runtimeClasspath
+	main = javaMainClass
+}
+
+dependencies {
+	compile 'org.apache.commons:commons-lang3:3.12.0'
+	implementation 'mysql:mysql-connector-java:8.0.26'
+	implementation 'org.apache.openjpa:openjpa:3.2.0'
+}
