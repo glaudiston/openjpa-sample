@@ -1,6 +1,8 @@
 package blog.main;
 
 import java.sql.Connection;
+import java.time.temporal.ChronoUnit;
+import java.time.ZonedDateTime;
 import java.sql.Statement;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
@@ -59,6 +61,7 @@ class Main {
 		EntityManager em = m.emf.createEntityManager();
 		Topic t = em.find(Topic.class, 2);
 		System.out.println("Topic="+t);
+		System.out.println(DateBucket.bucketize(ZonedDateTime.now(), ZonedDateTime.now().plusMinutes(10), 1,  ChronoUnit.SECONDS));
 		System.out.println("Done!");
 	}
 }

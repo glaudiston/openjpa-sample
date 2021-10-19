@@ -42,6 +42,7 @@ task runWithJavaExec(type: JavaExec) {
 
 dependencies {
 	compile 'org.apache.commons:commons-lang3:3.12.0'
+	compile 'org.projectlombok:lombok:1.18.22'
 	implementation 'mysql:mysql-connector-java:8.0.26'
 	implementation 'org.apache.openjpa:openjpa:3.2.0'
 }
